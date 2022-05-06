@@ -139,15 +139,15 @@ function getEvents(){
   })
 }
 function generateId(){
-  let identiier = localStorage.getItem("identifier")
-  if (identiier == null){
-    identiier = 0
+  let identifier = localStorage.getItem("identifier")
+  if (identifier == null){
+    identifier = 0
   }else{
-    identiier = parseInt(identiier)
+    identifier = parseInt(identifier)
   }
-  identiier = identiier + 1
-  localStorage.setItem("identifier", identiier)
-  return identiier
+  identifier = identifier + 1
+  localStorage.setItem("identifier", identifier)
+  return identifier
 
 }
 function formatDate(date) {
