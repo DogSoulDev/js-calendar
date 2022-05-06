@@ -1,5 +1,6 @@
 let nav = 0;
 let clicked = null;
+let eventSelected = null
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
 
 const calendar = document.getElementById('calendar');
@@ -30,13 +31,13 @@ function openModal(date,e) {
   clicked = date;
   if(e.target.matches('.day')){
     newEventModal.style.display = 'block';
-  }else{
-    const eventForDay = events.find(e => e.date === clicked);
-    if (eventForDay) {
-      document.getElementById('eventText').innerText = `${eventForDay.title} ${eventForDay.date}`;
-      deleteEventModal.style.display = 'block';
-    }
+    backDrop.style.display = 'block';
   }
+}
+function openModal2(calendarEvent,e) {
+  eventSelected = calendarEvent;
+  document.getElementById('eventText').innerText = `${calendarEvent.title} ${calendarEvent.date}`;
+  deleteEventModal.style.display = 'block';
   backDrop.style.display = 'block';
 }
 
@@ -80,10 +81,11 @@ function load() {
       }
       if (eventForDay) {
         eventForDay.forEach(showEvent =>{
-          const eventDiv = document.createElement('div');
+        const eventDiv = document.createElement('div');
         eventDiv.classList.add('event');
         eventDiv.innerText = showEvent.title;
         daySquare.appendChild(eventDiv);
+        eventDiv.addEventListener('click', (e) => openModal2(showEvent,e))
         })
       }
       daySquare.addEventListener('click', (e) => openModal(dayString,e))
@@ -120,6 +122,13 @@ window.addEventListener('keydown', function (event) {
       load();
     }
 })
+backDrop.onclick = function (event) {
+   
+  newEventModal.style.display = 'none';
+  deleteEventModal.style.display = 'none';
+  backDrop.style.display = 'none';
+  eventTitleInput.value = '';
+};
 
 function getEvents(){
   const event = document.querySelectorAll('.event')
@@ -129,12 +138,42 @@ function getEvents(){
   })
   })
 }
+function generateId(){
+  let identiier = localStorage.getItem("identifier")
+  if (identiier == null){
+    identiier = 0
+  }else{
+    identiier = parseInt(identiier)
+  }
+  identiier = identiier + 1
+  localStorage.setItem("identifier", identiier)
+  return identiier
+
+}
+function formatDate(date) {
+  var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+  if (month.length < 2) 
+      month = '0' + month;
+  if (day.length < 2) 
+      day = '0' + day;
+
+  return [month, day, year].join('/');
+}
 
 function saveEvent() {
   if (eventTitleInput.value) {
     eventTitleInput.classList.remove('error');
+    let date = clicked
+    if (startDate.value != ""){
+      date = formatDate(startDate.value)
+    }
     events.push({
-      date: clicked,
+      id: generateId(),
+      date: date,
       title: eventTitleInput.value,
       startDate: startDate.value //added start date
     });
@@ -148,7 +187,7 @@ function saveEvent() {
 }
 
 function deleteEvent() {
-  events = events.filter(e => e.date !== clicked);
+  events = events.filter(e => e.id !== eventSelected.id);
   localStorage.setItem('events', JSON.stringify(events));
   closeModal();
 }
