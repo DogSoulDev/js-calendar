@@ -1,78 +1,78 @@
 #newEventModal, #deleteEventModal {
-    display: none;
-    z-index: 20;
-    padding: 25px;
-    background-color: #e8f4fa;
-    box-shadow: 0px 0px 3px black;
-    border-radius: 5px;
-    width: 350px;
-    top: 100px;
-    left: calc(50% - 175px);
-    position: absolute;
-    font-family: sans-serif;
+  display: none;
+  z-index: 20;
+  padding: 25px;
+  background-color: #e8f4fa;
+  box-shadow: 0px 0px 3px black;
+  border-radius: 5px;
+  width: 350px;
+  top: 100px;
+  left: calc(50% - 175px);
+  position: absolute;
+  font-family: sans-serif;
 }
 #eventTitleInput {
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 25px;
-    border-radius: 3px;
-    outline: none;
-    border: none;
-    box-shadow: 0px 0px 3px gray;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 3px gray;
 }
 #eventTitleInput.error {
-    border: 2px solid red;
+  border: 2px solid red;
 }
 #cancelButton, #deleteButton {
-    background-color: #d36c6c;
+  background-color: #d36c6c;
 }
 #saveButton, #closeButton {
-    background-color: #92a1d1;
+  background-color: #92a1d1;
 }
 #eventText {
-    font-size: 14px;
+  font-size: 14px;
 }
 #modalBackDrop {
-    display: none;
-    top: 0px;
-    left: 0px;
-    z-index: 10;
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    background-color: rgba(0,0,0,0.8);
+  display: none;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0,0,0,0.8);
 }
 
 /* Steps of form*/
 #form {
-    width: 100%;
-  }
-  
-  .form_page {
-    display: flex;
-    justify-content: flex-start;
-    margin: 0 50px;
-  }
+  width: 100%;
+}
 
-  .form-group {
-    width: 100%;
-    margin-top: 25px;
-    margin-bottom: 15px;
-    font-size: 13px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .form-group input,
-  .form-group select {
-    display: block;
-    width: 30em;
-    border: 1.5px solid black;
-    border-radius: 4px;
-    padding: 3px 10px;
-    font-size: 12px;
-  }
+.form_page {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 50px;
+}
+
+.form-group {
+  width: 100%;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-size: 13px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group select {
+  display: block;
+  width: 30em;
+  border: 1.5px solid black;
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-size: 12px;
+}

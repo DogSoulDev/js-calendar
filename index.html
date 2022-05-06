@@ -5,15 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Calendar Js</title>
     <link rel="icon" href="./src/assets/1.png" />
+    <link rel="icon" href="./assets/img/DV.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://kit.fontawesome.com/0121341235.js" crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      media="screen"
-      href="./assets/css/styles.css"
-    />
+    <script src="https://kit.fontawesome.com/0121341235.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styles.css"/>
     <script src="./assets/js/main.js" type="module" defer async></script>
   </head>
   <body>
@@ -23,9 +18,9 @@
             <div class="events" id=""></div>
             <div class="" id=""></div>
         </aside>
-        <article class="calendar-container">
+        <article id="remove" class="calendar-container">
             <header class="header">
-                <h1>JS CALENDAR</h1>
+                <h1 class="title__calendar">JS<span class="title__calendar--style">CALENDAR</span></h1>
                 <div class="header__buttons">
                     <button class="btn prev-btn" id="backButton"><i class="fa-solid fa-xl fa-chevron-left"></i></button>
                     <h2 class="header__date-title" id="monthDisplay"></h2>
@@ -36,36 +31,35 @@
             </header>
             <section class="calendar">
                 <div id="weekdays" class="calendar__weekdays">
-                    <div>Mo</div>
-                    <div>Tu</div>
-                    <div>We</div>
-                    <div>Th</div>
-                    <div>Fr</div>
-                    <div>Sa</div>
-                    <div>Su</div>
+                  <div class="calendar--weekdays__div">Sun</div>
+                  <div class="calendar--weekdays__div">Mon</div>
+                  <div class="calendar--weekdays__div">Tue</div>
+                  <div class="calendar--weekdays__div">Wed</div>
+                  <div class="calendar--weekdays__div">Thu</div>
+                  <div class="calendar--weekdays__div">Fri</div>
+                  <div class="calendar--weekdays__div">Sat</div>
                 </div>
                 <div id="calendar" class="days">
-
                 </div>
             </section>
         </article>
         <div id="newEventModal">
           <form id="form">
-            <h2>New Event</h2>
-            <input id="eventTitleInput" placeholder="Event Title" maxlength="60"/>
+            <h2 class="title--event__heading">New Event</h2>
+            <input id="eventTitleInput" class="title--event__input" placeholder="Event Title" maxlength="60"/>
             
-            <label for="from">From</label>
-            <input id="startDate" type="datetime-local">
+            <label class="name--event__label" for="from">From</label>
+            <input class="date--event__input" id="startDate" type="datetime-local">
             <br>
-            <label for="endDate">End Date</label>
-            <input type="checkbox" id="">
+            <label class="name--event__label" for="endDate">End Date</label>
+            <input type="checkbox" id="endDate">
             <br>
-            <label for="to">To</label>
-            <input type="datetime-local">
+            <label class="name--event__label" id="to" class="hidden" for="to">To</label>
+            <input class="date--event__input hidden" id="dateTime" type="datetime-local">
             <br>
-            <label for="reminder">Reminder</label>
+            <label class="name--event__label" for="reminder">Reminder</label>
             <input type="checkbox" id="reminder">
-            <select id="reminder">
+            <select class="hidden reminder--event__select" id="reminderSelect">
               <option value="5">5 minutes</option>
               <option value="10">10 minutes</option>
               <option value="15">15 minutes</option>
@@ -73,24 +67,29 @@
               <option value="1">1 hour</option>
             </select>
             <br>
-            <label for="description">Description</label>
-            <input type="text" id="description" maxlength="500">
-
+            <label class="name--event__label" for="description">Description</label>
+            <input type="text" id="description" class="date--event__input" maxlength="500">
+            <br>
             <label for="eventType">Event type</label>
-            <select id="eventType">
+            <select id="eventType" class="reminder--event__select">
               <option value="meeting">Meeting</option>
               <option value="study">Study</option>
               <option value="personal">Personal</option>
+              <option value="other">Other</option>
             </select>
-
-            <button id="saveButton">Save</button>
-            <button id="cancelButton">Cancel</button>
+            <br>
+            <button id="cancelButton" class="cancel--btn">Cancel</button>
+            <button id="saveButton" class="save--btn">Save</button>
             </div>
             <div id="deleteEventModal">
               <h2>Event</h2>
               <p id="eventText"></p>
-              <button id="deleteButton">Delete</button>
-              <button id="closeButton">Close</button>
+              <p id="initDate"></p>
+              <p id="endOfEvent"></p>
+              <p id="eventDescription"></p>
+              <p id="typeOfEvent"></p>
+              <button id="deleteButton" class="cancel--btn">Delete</button>
+              <button id="closeButton" class="close--btn">Close</button>
             </div>
             <div id="modalBackDrop"></div>
           </form>

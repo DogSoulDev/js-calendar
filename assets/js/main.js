@@ -10,10 +10,38 @@ const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const butt = document.getElementById('plus-btn');
 const startDate = document.getElementById('startDate');
+const endDate = document.getElementById('endDate');
+const description = document.getElementById('description');
+const eventType = document.getElementById('eventType');
+const eventTypeValue = eventType.options[eventType.selectedIndex].value;
+const reminderSelect = document.getElementById('reminderSelect');
+const reminderSelectValue = reminderSelect.options[reminderSelect.selectedIndex].value;
+const checkbox = document.getElementById('endDate');
+const to = document.getElementById('to');
+const dateTime = document.getElementById('dateTime');
+const reminder = document.getElementById('reminder');
+
+checkbox.addEventListener('click', isChecked);
+reminder.addEventListener('click', isChecked);
+
+function isChecked(){
+  if(checkbox.checked){
+    to.classList.remove('hidden');
+    dateTime.classList.remove('hidden');
+  }else if(!checkbox.checked){
+    to.classList.add('hidden');
+    dateTime.classList.add('hidden');
+  }
+
+  if(reminder.checked){
+    reminderSelect.classList.remove('hidden');
+  }else if(!reminder.checked){
+    reminderSelect.classList.add('hidden');
+  }
+}
 
 butt.onclick = function (date) {
   clicked = date;
-
   const eventForDay = events.find(e => e.date === clicked);
 
   if (eventForDay) {
@@ -26,7 +54,7 @@ butt.onclick = function (date) {
   backDrop.style.display = 'block';
 }
 
-function openModal(date,e) {
+function openModal(date, e) {
   clicked = date;
 
   if(e.target.matches('.day')){
@@ -35,7 +63,10 @@ function openModal(date,e) {
     const eventForDay = events.find(e => e.date === clicked);
 
     if (eventForDay) {
-      document.getElementById('eventText').innerText = `${eventForDay.title} ${eventForDay.date}`;
+      document.getElementById('eventText').innerText = `${eventForDay.title}`;
+      document.getElementById('initDate').innerText = `${eventForDay.date}`;
+      document.getElementById('eventDescription').innerText = `${eventForDay.description}`;
+      document.getElementById('typeOfEvent').innerText = `${eventForDay.eventType}`;
   
       deleteEventModal.style.display = 'block';
     }  
@@ -79,10 +110,9 @@ function load() {
     if (i > paddingDays) {
       daySquare.innerText = i - paddingDays;
       const eventForDay = events.filter(e => e.date === dayString);
-      
 
       if (i - paddingDays === day && nav === 0) {
-        daySquare.id = 'currentDay';
+        daySquare.classList.add('selected-day');
       }
 
       if (eventForDay) {
@@ -128,11 +158,11 @@ window.addEventListener('keydown', function (event) {
 
 function getEvents(){
   const event = document.querySelectorAll('.event')
-    Array.from(event).forEach( (eventElement)=>{
-      eventElement.addEventListener('click', (e)=>{
-    console.log(e.target)
-  })
-  })
+    Array.from(event).forEach((eventElement) => {
+    eventElement.addEventListener('click', (e)=> {
+    console.log(e.target);
+    });
+  });
 }
 
 function saveEvent() {
@@ -142,7 +172,11 @@ function saveEvent() {
     events.push({
       date: clicked,
       title: eventTitleInput.value,
-      startDate: startDate.value //added start date
+      startDate: startDate.value,
+      endDate: endDate.value,
+      description: description.value,
+      eventType: eventTypeValue,
+      reminder: reminderSelectValue
     });
 
     localStorage.setItem('events', JSON.stringify(events));
