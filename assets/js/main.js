@@ -117,7 +117,7 @@ function load() {
 
       if (eventForDay) {
         eventForDay.forEach(showEvent =>{
-          const eventDiv = document.createElement('div');
+        const eventDiv = document.createElement('div');
         eventDiv.classList.add('event');
         eventDiv.innerText = showEvent.title;
         daySquare.appendChild(eventDiv);
