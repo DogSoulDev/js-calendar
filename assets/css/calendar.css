@@ -1,277 +1,78 @@
-/* CSS Reset */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-* {
-    margin: 0;
-}
-html, body {
-    height: 100%;
-}
-/*--------------*/
-:root{
-    --back-color: #1F1F1F;
-    --font-color: #ffffff;
-    --selected-day: #589C5F;
-    --modal-color: #363434;
-    --input-color: #525252;
-}
-*{
-    background-color: var(--back-color);
-    color: var(--font-color);
-    font-family: 'Inter', sans-serif;
-}
-.title__calendar{
-    text-align: center;
-    font-size: 2rem;
-    margin: 2rem;
-    font-weight: lighter;
-    user-select: none;
-}
-
-.title__calendar--style{
-    font-weight: bold;
-    color: rgb(204, 173, 0);
-    user-select: none;
-}
-.header__buttons{
-    display: flex;
-    justify-content: center;
-}
-button{
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    cursor: pointer; 
-}
-/*------------↓↓↓ TO FIX ↓↓↓-------------*/
-.calendar{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-    margin: auto;
-}
-.calendar__weekdays{
-    display: flex;
-    justify-content: center;
-    width: 70%;
-    font-size: 1em;
-    font-weight: lighter;
-    color:var(--font-color);
-    margin: 0.31rem;
-}
-
-.calendar--weekdays__div{
-    width: 5.5rem;
-    padding: 1rem 2rem 1rem 2rem;
-    user-select: none;
-}
-
-.calendar--weekdays__div:nth-child(1){
-    width: 5.5rem;
-    padding-left: 2.8rem;
-}
-
-.calendar--weekdays__div:nth-child(2){
-    width: 5.5rem;
-    padding-left: 2.3rem;
-}
-
-.calendar--weekdays__div:nth-child(3){
-    width: 5.5rem;
-    padding-left: 2rem;
-}
-
-.calendar--weekdays__div:nth-child(4){
-    width: 5.5rem;
-    padding-left: 1.6rem;
-}
-
-.calendar--weekdays__div:nth-child(5){
-    width: 5.5rem;
-    padding-left: 1.3rem;
-}
-
-.calendar--weekdays__div:nth-child(6){
-    width: 5.5rem;
-    padding-left: 1.4rem;
-}
-
-.calendar--weekdays__div:nth-child(7){
-    width: 5.5rem;
-    padding-left: 0.9rem;
-}
-
-.days{
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: 1fr repeat(5, 1fr);
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
-}
-.day{
-    display: flex;
-    width: 4.25rem;
-    height: 5.25rem;
-    margin: 0.31rem;
-    box-sizing: border-box;
-    padding: 0.625rem;
-    background-color: #252525;
-    border-radius: 0.3rem;
-    color: #a7a7a7;
-    font-size: 0.8rem;
-    cursor: pointer;
-    user-select: none;
-    cursor: url(/assets/img/vader-pointer.cur), pointer ;
-}
-.selected-day{
-    background-color: rgb(71, 71, 71);
-    border-radius: 0.3rem;
-}
-.day:hover {
-    background-color: #292929;
-}
-/*---------------------------------------*/
-.header__buttons{
-    display: flex;
-    justify-content: center;
-    color: white;
-}
-.header__date-title{
-    font-size: 1.8rem;
-    font-weight: 500;
-    user-select: none;
-}
-.btn.prev-btn, .btn.next-btn {
-    margin: 0em 5em;
-}
-.hidden{
-    display: none;
-}
-/*---------------------------------------*/
-
-.title--event__heading {
-    color: #eeeeee;
-    font-size: 1.6rem;
-    margin-bottom: 0.7rem;
-    user-select: none;
-}
-
-.padding {
-    cursor: default !important;
-    background-color: var(--back-color) !important;
-    box-shadow: none !important;
-}
 #newEventModal, #deleteEventModal {
     display: none;
-    position: absolute;
-    width: 350px;
+    z-index: 20;
     padding: 25px;
+    background-color: #e8f4fa;
+    box-shadow: 0px 0px 3px black;
+    border-radius: 5px;
+    width: 350px;
     top: 100px;
     left: calc(50% - 175px);
-    z-index: 20;
-    background-color: var(--back-color)!important;
-    border-radius: 5px;
+    position: absolute;
     font-family: sans-serif;
-    box-shadow: 0px 0px 3px black;
-}
-input{
-    background-color: var(--modal-color);
-}
-.title--event__input {
+  }
+  #eventTitleInput {
     padding: 10px;
     width: 100%;
     box-sizing: border-box;
+    margin-bottom: 25px;
     border-radius: 3px;
     outline: none;
     border: none;
     box-shadow: 0px 0px 3px gray;
-}
-
-.name--event__label {
-    font-size: 0.8rem;
-    font-weight: 300;
-}
-
-.date--event__input {
-    padding: 10px;
-    height: 1.3rem;
-    width: 7.9rem;
-    box-sizing: border-box;
-    margin-bottom: 0.7rem;
-    margin-left: 0.5rem;
-    margin: 1rem;
-    border-radius: 3px;
-    font-size: 0.6rem;
-    color: #949494;
-    outline: none;
-    border: none;
-    box-shadow: 0px 0px 3px gray;
-}
-
-.reminder--event__select {
-    height: 1.3rem;
-    width: 7.9rem;
-    border-radius: 0.3rem;
-    box-shadow: 0px 0px 3px gray;
-    background-color: var(--modal-color);
-    font-size: 0.6rem;
-}
-
-.cancel--btn {
-    margin-top: 1rem;
-    margin-right: 0.3rem;
-    padding: 0.3rem 0.6rem;
-    border-radius: 0.2rem;
-}
-
-.save--btn {
-    margin-top: 1rem;
-    padding: 0.3rem 1.3rem;
-    border-radius: 0.2rem;
-}
-
-.close--btn {
-    margin-top: 1rem;
-    margin-right: 1rem;
-    padding: 0.3rem 1rem;
-    border-radius: 0.2rem;
-}
-
-#eventTitleInput.error {
+  }
+  #eventTitleInput.error {
     border: 2px solid red;
-}
-#cancelButton, #deleteButton {
+  }
+  #cancelButton, #deleteButton {
     background-color: #d36c6c;
-}
-#saveButton, #closeButton {
+  }
+  #saveButton, #closeButton {
     background-color: #92a1d1;
-}
-#eventText {
+  }
+  #eventText {
     font-size: 14px;
-}
-#modalBackDrop {
+  }
+  #modalBackDrop {
     display: none;
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
     top: 0px;
     left: 0px;
     z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
     background-color: rgba(0,0,0,0.8);
-}
-
-.event {
+  }
+  
+  /* Steps of form*/
+  #form {
+    width: 100%;
+  }
+  
+  .form_page {
     display: flex;
-    background-color: transparent;
-    font-size: 0.6rem;
-    padding: 0;
-    margin: 0;
-    margin-top: 1rem;
-    margin-left: -0.5rem;
-}
-
-.event:hover {
-    background-color: #292929;
-}
+    justify-content: flex-start;
+    margin: 0 50px;
+  }
+  
+  .form-group {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 13px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    display: block;
+    width: 30em;
+    border: 1.5px solid black;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 12px;
+  }
